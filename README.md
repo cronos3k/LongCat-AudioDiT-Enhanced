@@ -11,16 +11,123 @@ license: apache-2.0
 short_description: Voice cloning TTS with Whisper STT
 ---
 
-# LongCat-AudioDiT Enhanced — High-Fidelity TTS + Whisper STT
+# LongCat-AudioDiT Enhanced
 
 <div align="center">
   <img src="assets/LongCat-AudioDiT.svg" width="45%" alt="LongCat-AudioDiT" />
 </div>
-<hr>
+
+<br>
+
+> **This is a community-enhanced fork of [LongCat-AudioDiT](https://github.com/meituan-longcat/LongCat-AudioDiT) by [Meituan LongCat Team](https://github.com/meituan-longcat).**
+> All credit for the model architecture, training, and weights goes to the original authors.
+> We simply wrapped their excellent work in a more accessible package — a Gradio GUI, Whisper-based speech input, and one-click installers — so more people can try it out.
+
+---
+
+## What We Added
+
+Building on top of the original CLI-only release, this fork adds a few quality-of-life features:
+
+| Feature | Original | This Fork |
+|---|:---:|:---:|
+| TTS (1B / 3.5B) | ✅ | ✅ |
+| Zero-shot Voice Cloning | ✅ | ✅ |
+| Gradio Web UI | — | ✅ |
+| Whisper Turbo STT | — | ✅ |
+| Whisper large-v3 STT | — | ✅ |
+| Speech-to-Speech pipeline | — | ✅ |
+| VRAM memory manager (auto/sequential) | — | ✅ |
+| Cross-platform installer (Win + Linux) | — | ✅ |
+| Model downloader | — | ✅ |
+| HuggingFace Spaces demo (ZeroGPU) | — | ✅ |
+
+## Quick Start
+
+**Windows**
+```bat
+git clone https://github.com/cronos3k/LongCat-AudioDiT-Enhanced
+cd LongCat-AudioDiT-Enhanced
+install.bat
+launch.bat
+```
+
+**Linux / macOS**
+```bash
+git clone https://github.com/cronos3k/LongCat-AudioDiT-Enhanced
+cd LongCat-AudioDiT-Enhanced
+bash install.sh
+bash launch.sh
+```
+
+**Download models (optional — also auto-downloaded on first run)**
+```bash
+python download_models.py --tts 1B --whisper turbo   # minimal (~6 GB)
+python download_models.py --all                       # everything
+```
+
+## Installation Options
+
+### Option A — GUI (recommended)
+
+```bash
+# Linux/Mac
+bash install.sh
+
+# Windows
+install.bat
+```
+
+Then launch:
+```bash
+bash launch.sh   # or launch.bat on Windows
+```
+
+### Option B — CLI / Python API only
+
+```bash
+pip install -r requirements_enhanced.txt
+```
+
+### Option C — Minimal (original, no GUI/Whisper)
+
+```bash
+pip install -r requirements.txt
+```
+
+## API Endpoints (Gradio REST API)
+
+When running the GUI, all actions are also available as REST endpoints:
+
+| Endpoint | Description |
+|---|---|
+| `POST /api/clone_voice` | Clone a voice: text + reference audio + transcription |
+| `POST /api/transcribe_reference` | Transcribe reference audio with Whisper |
+| `POST /api/plain_tts` | Generate speech without a reference voice |
+| `POST /api/transcribe` | Transcribe any audio file |
+| `POST /api/save_voice` | Save a voice to the library |
+| `POST /api/load_voice` | Load a voice from the library by name |
+| `POST /api/delete_voice` | Delete a voice from the library |
+| `POST /api/list_voices` | List all saved voices |
+
+## Models at a Glance
+
+| Model | VRAM | Notes |
+|---|---|---|
+| AudioDiT-1B | ~4 GB | Fast, great quality |
+| AudioDiT-3.5B | ~10 GB | SOTA quality |
+| Whisper Turbo | ~1.6 GB | Fast transcription |
+| Whisper large-v3 | ~3 GB | Most accurate |
+
+---
+
+# Original Project — LongCat-AudioDiT
+
+*Everything below is from the [original repository](https://github.com/meituan-longcat/LongCat-AudioDiT) by the Meituan LongCat Team. Please cite their work if you use this model.*
 
 <div align="center" style="line-height: 1;">
     <a href="https://arxiv.org/abs/2603.29339">
-    <img alt="Paper" src="https://img.shields.io/badge/arXiv-2603.29339-b31b1b.svg" style="display: inline-block; vertical-align: middle;"/>  
+    <img alt="Paper" src="https://img.shields.io/badge/arXiv-2603.29339-b31b1b.svg" style="display: inline-block; vertical-align: middle;"/>
     </a>
     <a href="https://github.com/meituan-longcat/LongCat-AudioDiT" target="_blank" style="margin: 2px;">
         <img alt="GitHub" src="https://img.shields.io/badge/GitHub-LongCatAudioDiT-white?logo=github&logoColor=white&color=a4b5d5" style="display: inline-block; vertical-align: middle;"/>
@@ -49,51 +156,10 @@ short_description: Voice cloning TTS with Whisper STT
   </a>
 </div>
 
-## What's New in This Fork
-
-This is an enhanced fork adding **Whisper STT integration** and a full **Gradio GUI**:
-
-| Feature | Original | This Fork |
-|---|:---:|:---:|
-| TTS (1B / 3.5B) | ✅ | ✅ |
-| Voice Cloning | ✅ | ✅ |
-| Gradio Web UI | ❌ | ✅ |
-| Whisper Turbo STT | ❌ | ✅ |
-| Whisper large-v3 STT | ❌ | ✅ |
-| Speech-to-Speech pipeline | ❌ | ✅ |
-| VRAM memory manager (auto/sequential) | ❌ | ✅ |
-| Cross-platform installer (Win + Linux) | ❌ | ✅ |
-| Model downloader | ❌ | ✅ |
-
-### Quick Start
-
-**Windows**
-```bat
-git clone https://github.com/your-username/LongCat-AudioDiT-Enhanced
-cd LongCat-AudioDiT-Enhanced
-install.bat
-launch.bat
-```
-
-**Linux / macOS**
-```bash
-git clone https://github.com/your-username/LongCat-AudioDiT-Enhanced
-cd LongCat-AudioDiT-Enhanced
-bash install.sh
-bash launch.sh
-```
-
-**Download models first (optional — also auto-downloaded on first run)**
-```bash
-python download_models.py --tts 1B --whisper turbo   # minimal (~6 GB)
-python download_models.py --all                       # everything
-```
-
----
-
-## Introduction (Original)
+## Introduction
 
 LongCat-AudioDiT is a state-of-the-art (SOTA) diffusion-based text-to-speech (TTS) model that directly operates in the waveform latent space.
+
 > **Abstract**: We present LongCat-TTS, a novel, non-autoregressive diffusion-based text-to-speech (TTS) model that achieves state-of-the-art (SOTA) performance.
 Unlike previous methods that rely on intermediate acoustic representations such as mel-spectrograms, the core innovation of LongCat-TTS lies in operating directly within the waveform latent space. This approach effectively mitigates compounding errors and drastically simplifies the TTS pipeline, requiring only a waveform variational autoencoder (Wav-VAE) and a diffusion backbone.
 Furthermore, we introduce two critical improvements to the inference process: first, we identify and rectify a long-standing training-inference mismatch; second, we replace traditional classifier-free guidance with adaptive projection guidance to elevate generation quality.
@@ -108,7 +174,8 @@ Code and model weights are released to foster further research within the speech
 This repository provides the HuggingFace-compatible implementation, including model definition, weight conversion, and inference scripts.
 
 ## Experimental Results on Seed Benchmark
-LongCat-AudioDiT obtains state-of-the-art (SOTA) voice cloning performance on the Seed-benchmark, surpassing both close-source and open-source modles.
+
+LongCat-AudioDiT obtains state-of-the-art (SOTA) voice cloning performance on the Seed-benchmark, surpassing both close-source and open-source models.
 
 | **Model** | **ZH CER (%)** ↓ | **ZH SIM** ↑ | **EN WER (%)** ↓ | **EN SIM** ↑ | **ZH-Hard CER (%)** ↓ | **ZH-Hard SIM** ↑ |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -142,35 +209,6 @@ LongCat-AudioDiT obtains state-of-the-art (SOTA) voice cloning performance on th
 
 1. Results of MOSS-TTS are from [MOSS-TTS](https://github.com/OpenMOSS/MOSS-TTS)
 2. Results of CosyVoice3.5 are from [CosyVoice3.5](https://mp.weixin.qq.com/s/sTNC7bVphs9zofly3lBoUQ)
-
-## Installation
-
-### Option A — GUI (recommended)
-
-```bash
-# Linux/Mac
-bash install.sh
-
-# Windows
-install.bat
-```
-
-Then launch:
-```bash
-bash launch.sh   # or launch.bat on Windows
-```
-
-### Option B — CLI / Python API only
-
-```bash
-pip install -r requirements_enhanced.txt
-```
-
-### Option C — Minimal (original, no GUI/Whisper)
-
-```bash
-pip install -r requirements.txt
-```
 
 ## CLI Inference
 
@@ -249,15 +287,20 @@ output = model(
 )
 ```
 
-## License Agreement
-This repository, including both the model weights and the source code, is released under the **MIT License**.
+## License
+
+The original model weights and source code are released under the **MIT License** by the Meituan LongCat Team.
+The enhancements in this fork are released under the same MIT License.
 
 Any contributions to this repository are licensed under the MIT License, unless otherwise stated. This license does not grant any rights to use Meituan trademarks or patents.
 
 For details, see the [LICENSE](./LICENSE) file.
 
 ## Contact
-Please contact us at <a href="mailto:longcat-team@meituan.com">longcat-team@meituan.com</a> or open an issue if you have any questions.
 
-#### WeChat Group
+For questions about the **original model**, please contact the LongCat team at <a href="mailto:longcat-team@meituan.com">longcat-team@meituan.com</a> or open an issue on the [original repository](https://github.com/meituan-longcat/LongCat-AudioDiT).
+
+For questions about **this enhanced fork**, please open an issue [here](https://github.com/cronos3k/LongCat-AudioDiT-Enhanced/issues).
+
+#### WeChat Group (Original Team)
 <img src=./assets/longcat_wechat_group.jpeg width="200px">
