@@ -1,4 +1,17 @@
-# LongCat-AudioDiT: High-Fidelity Diffusion Text-to-Speech in the Waveform Latent Space
+---
+title: LongCat-AudioDiT Enhanced
+emoji: 🐱
+colorFrom: purple
+colorTo: pink
+sdk: gradio
+sdk_version: "5.25.0"
+app_file: spaces_app.py
+pinned: false
+license: apache-2.0
+short_description: Voice cloning TTS with Whisper STT
+---
+
+# LongCat-AudioDiT Enhanced — High-Fidelity TTS + Whisper STT
 
 <div align="center">
   <img src="assets/LongCat-AudioDiT.svg" width="45%" alt="LongCat-AudioDiT" />
@@ -36,7 +49,49 @@
   </a>
 </div>
 
-## Introduction
+## What's New in This Fork
+
+This is an enhanced fork adding **Whisper STT integration** and a full **Gradio GUI**:
+
+| Feature | Original | This Fork |
+|---|:---:|:---:|
+| TTS (1B / 3.5B) | ✅ | ✅ |
+| Voice Cloning | ✅ | ✅ |
+| Gradio Web UI | ❌ | ✅ |
+| Whisper Turbo STT | ❌ | ✅ |
+| Whisper large-v3 STT | ❌ | ✅ |
+| Speech-to-Speech pipeline | ❌ | ✅ |
+| VRAM memory manager (auto/sequential) | ❌ | ✅ |
+| Cross-platform installer (Win + Linux) | ❌ | ✅ |
+| Model downloader | ❌ | ✅ |
+
+### Quick Start
+
+**Windows**
+```bat
+git clone https://github.com/your-username/LongCat-AudioDiT-Enhanced
+cd LongCat-AudioDiT-Enhanced
+install.bat
+launch.bat
+```
+
+**Linux / macOS**
+```bash
+git clone https://github.com/your-username/LongCat-AudioDiT-Enhanced
+cd LongCat-AudioDiT-Enhanced
+bash install.sh
+bash launch.sh
+```
+
+**Download models first (optional — also auto-downloaded on first run)**
+```bash
+python download_models.py --tts 1B --whisper turbo   # minimal (~6 GB)
+python download_models.py --all                       # everything
+```
+
+---
+
+## Introduction (Original)
 
 LongCat-AudioDiT is a state-of-the-art (SOTA) diffusion-based text-to-speech (TTS) model that directly operates in the waveform latent space.
 > **Abstract**: We present LongCat-TTS, a novel, non-autoregressive diffusion-based text-to-speech (TTS) model that achieves state-of-the-art (SOTA) performance.
@@ -89,6 +144,29 @@ LongCat-AudioDiT obtains state-of-the-art (SOTA) voice cloning performance on th
 2. Results of CosyVoice3.5 are from [CosyVoice3.5](https://mp.weixin.qq.com/s/sTNC7bVphs9zofly3lBoUQ)
 
 ## Installation
+
+### Option A — GUI (recommended)
+
+```bash
+# Linux/Mac
+bash install.sh
+
+# Windows
+install.bat
+```
+
+Then launch:
+```bash
+bash launch.sh   # or launch.bat on Windows
+```
+
+### Option B — CLI / Python API only
+
+```bash
+pip install -r requirements_enhanced.txt
+```
+
+### Option C — Minimal (original, no GUI/Whisper)
 
 ```bash
 pip install -r requirements.txt
