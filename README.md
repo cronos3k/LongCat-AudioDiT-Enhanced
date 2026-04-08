@@ -15,6 +15,10 @@ short_description: Voice cloning TTS with Whisper STT
 
 <div align="center">
   <img src="assets/LongCat-AudioDiT.svg" width="45%" alt="LongCat-AudioDiT" />
+  <br><br>
+  <a href="https://huggingface.co/spaces/cronos3k/LongCat-AudioDiT-Enhanced" target="_blank">
+    <img alt="Try it on HF Spaces" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Try%20it%20Live-blue?style=for-the-badge" />
+  </a>
 </div>
 
 <br>
@@ -22,6 +26,9 @@ short_description: Voice cloning TTS with Whisper STT
 > **This is a community-enhanced fork of [LongCat-AudioDiT](https://github.com/meituan-longcat/LongCat-AudioDiT) by [Meituan LongCat Team](https://github.com/meituan-longcat).**
 > All credit for the model architecture, training, and weights goes to the original authors.
 > We simply wrapped their excellent work in a more accessible package — a Gradio GUI, Whisper-based speech input, and one-click installers — so more people can try it out.
+
+> [!IMPORTANT]
+> **Research and Testing Only.** This project is provided strictly for research, educational, and personal experimentation purposes. It is **not** intended for generating deceptive, misleading, or harmful content. Do not use this software to impersonate real individuals without their explicit consent, to create non-consensual deepfakes, or for any activity that violates applicable laws or regulations. By using this software you agree to take full responsibility for ensuring your use complies with all relevant laws in your jurisdiction. The authors and contributors disclaim all liability for misuse.
 
 ---
 
