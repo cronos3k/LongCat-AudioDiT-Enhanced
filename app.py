@@ -372,7 +372,12 @@ def build_ui(default_device: str = "cuda"):
 
         gr.Markdown(
             "# LongCat-AudioDiT — Voice Cloning Studio\n"
-            "State-of-the-art voice cloning: give it a reference audio, type your text, get the result."
+            "State-of-the-art voice cloning based on [LongCat-AudioDiT](https://github.com/meituan-longcat/LongCat-AudioDiT) by the Meituan LongCat Team. "
+            "Give it a reference audio, type your text, get the result.\n\n"
+            "> **Research & Testing Only.** This tool is provided strictly for research, educational, and personal experimentation purposes. "
+            "It is **not** intended for generating deceptive, misleading, or harmful content. "
+            "Do not use it to impersonate real individuals without their explicit consent, to create non-consensual deepfakes, "
+            "or for any activity that violates applicable laws. By using this tool you accept full responsibility for your use."
         )
 
         # ── Global settings row ──────────────────────────────────────────
